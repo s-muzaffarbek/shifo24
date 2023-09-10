@@ -10,20 +10,18 @@ from myapp.serializers import DoctorSerializer, WorkPlaceSerializer, SpecialtySe
 
 # Create your views here.
 
-def doctor_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        doctors = Doctor.objects.all()
-        serializer = DoctorSerializer(doctors, many=True)
+class DoctorViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = Doctor.objects.all()
+        serializer = DoctorSerializer(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-
-def doctor_detail(request, id):
-    doctor = Doctor.objects.get(id=id)
-    serializer = DoctorSerializer(doctor)
-    return JsonResponse(serializer.data, safe=False)
+    def retrieve(self, request, pk=None):
+        queryset = Doctor.objects.all()
+        specialty = get_object_or_404(queryset, pk=pk)
+        serializer = DoctorSerializer(specialty)
+        return JsonResponse(serializer.data, safe=False)
 
 
 class WorkPlaceViewSet(viewsets.ViewSet):
