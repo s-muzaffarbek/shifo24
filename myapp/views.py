@@ -14,13 +14,13 @@ class DoctorViewSet(viewsets.ViewSet):
 
     def list(self, request):
         queryset = Doctor.objects.all()
-        serializer = DoctorSerializer(queryset, many=True)
+        serializer = DoctorSerializer(queryset, many=True, context={'request': request})
         return JsonResponse(serializer.data, safe=False)
 
     def retrieve(self, request, pk=None):
         queryset = Doctor.objects.all()
         specialty = get_object_or_404(queryset, pk=pk)
-        serializer = DoctorSerializer(specialty)
+        serializer = DoctorSerializer(specialty, context={'request': request})
         return JsonResponse(serializer.data, safe=False)
 
 
