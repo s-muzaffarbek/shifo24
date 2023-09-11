@@ -12,6 +12,18 @@ class WorkPlace(models.Model):
     name = models.CharField(max_length=255)
     location = PlainLocationField(based_fields=['name'], zoom=10, suffix='Tashkent')
 
+    @property
+    def latitude(self):
+        if self.location:
+            return float(self.location.split(',')[0])
+        return None
+
+    @property
+    def longitude(self):
+        if self.location:
+            return float(self.location.split(',')[1])
+        return None
+
     def __str__(self):
         return self.name
 
