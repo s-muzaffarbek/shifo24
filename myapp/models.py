@@ -1,5 +1,7 @@
 from django.db import models
 from location_field.models.plain import PlainLocationField
+
+
 # Create your models here.
 
 class Specialty(models.Model):
@@ -7,6 +9,7 @@ class Specialty(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class WorkPlace(models.Model):
     name = models.CharField(max_length=255)

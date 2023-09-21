@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Doctor, WorkPlace, Specialty
-
+from modeltranslation.admin import TranslationAdmin
 # Register your models here.
 
 class DoctorAdmin(admin.ModelAdmin):
@@ -12,5 +12,3 @@ class DoctorAdmin(admin.ModelAdmin):
 admin.site.register(WorkPlace)
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Specialty)
-
-
