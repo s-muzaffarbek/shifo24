@@ -42,9 +42,6 @@ class DoctorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class WorkPlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkPlace

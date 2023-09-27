@@ -35,14 +35,12 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=[permissions.AllowAny, ],
 )
-
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('api/', include('myapp.urls')),
+    path('api/', include('users.urls')),
     path('i18n/', set_language, name='set_language'),
 )
-
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -16,7 +16,6 @@ from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -40,14 +39,25 @@ INSTALLED_APPS = [
 
     #apps
     'myapp.apps.MyappConfig',
+    'users',
 
     #tashqi kutubxona
     'rest_framework',
     'location_field',
     'drf_yasg',
     'modeltranslation',
+    'rest_framework.authtoken',
 
 ]
+AUTH_USER_MODEL = 'users.AdminUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
