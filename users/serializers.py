@@ -1,4 +1,4 @@
-from .models import Admin, CustomUser
+from .models import Admin, CustomUser, Doctor
 from rest_framework import serializers
 
 class AdminRegisterSerializer(serializers.ModelSerializer):
@@ -28,4 +28,9 @@ class AdminSerializer(serializers.ModelSerializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
+        fields = '__all__'
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
         fields = '__all__'

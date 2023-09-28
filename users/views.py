@@ -89,3 +89,7 @@ class AdminUserView(viewsets.ModelViewSet):
 class CustomUser(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = CustomUserSerializer
+
+class DoctorUser(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = DoctorSerializer
