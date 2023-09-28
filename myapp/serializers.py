@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Doctor, WorkPlace, Specialty
+from .models import WorkPlace, Specialty
+from users.models import Doctor
 
 
 class DoctorSerializer(serializers.ModelSerializer):

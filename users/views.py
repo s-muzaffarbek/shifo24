@@ -1,19 +1,19 @@
 from django.contrib.auth import login, authenticate
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import generics
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
-from rest_framework import viewsets
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import viewsets, status, generics
 from rest_framework.permissions import IsAuthenticated
-
-from .models import AdminUser
-from .serializers import AdminRegisterSerializer, AdminUserSerializer
-
-from rest_framework import status
+from .models import Doctor, Admin, CustomUser
+from .serializers import AdminRegisterSerializer, AdminSerializer, CustomUserSerializer
+from myapp.serializers import DoctorSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+class DoctorViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = DoctorSerializer
+    queryset = Doctor.objects.all()
 
 
 class AdminRegisterView(APIView):
@@ -81,7 +81,11 @@ class LogoutView(generics.GenericAPIView):
 
 class AdminUserView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    serializer_class = AdminUserSerializer
+    serializer_class = AdminSerializer
 
     def get_queryset(self):
-        return AdminUser.objects.filter(pk=self.request.user.pk)
+        return Admin.objects.filter(pk=self.request.user.pk)
+
+class CustomUser(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CustomUserSerializer

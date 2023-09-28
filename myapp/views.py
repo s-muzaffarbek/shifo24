@@ -4,17 +4,12 @@ from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
-from myapp.models import Doctor, WorkPlace, Specialty
+from users.models import Doctor
+from myapp.models import WorkPlace, Specialty
 from myapp.serializers import DoctorSerializer, WorkPlaceSerializer, SpecialtySerializer
 
 
 # Create your views here.
-
-class DoctorViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    serializer_class = DoctorSerializer
-    queryset = Doctor.objects.all()
 
 class WorkPlaceViewSet(viewsets.ModelViewSet):
     queryset = WorkPlace.objects.all()

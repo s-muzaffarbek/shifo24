@@ -1,29 +1,31 @@
-from .models import AdminUser
+from .models import Admin, CustomUser
 from rest_framework import serializers
-
-from rest_framework import serializers
-from .models import AdminUser
 
 class AdminRegisterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AdminUser
+        model = Admin
         fields = ['username', 'phone', 'password', 'workplace']
 
     def create(self, validated_data):
-        user = AdminUser(
+        user = Admin(
             username=validated_data["username"],
             password=validated_data["password"],
             phone=validated_data["phone"],
         )
         password = validated_data["password"]
-        user.set_password(password)
+        user.user.set_password(password)
         user.save()
         return user
 class AdminLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
-class AdminUserSerializer(serializers.ModelSerializer):
+class AdminSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AdminUser
+        model = Admin
+        fields = '__all__'
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
         fields = '__all__'

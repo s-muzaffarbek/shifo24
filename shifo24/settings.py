@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
 ]
-AUTH_USER_MODEL = 'users.AdminUser'
+AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'shifo24.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db1.sqlite3',
     }
 }
 
